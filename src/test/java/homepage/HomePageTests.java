@@ -12,4 +12,10 @@ public class HomePageTests extends BaseTests {
 		loadHomePage();
 		assertThat(homePage.sumProducts(), is(33)); 
 	}
+	
+	@Test
+	public void testValidateCartEmpty() {
+		int productsInCart = homePage.getQuantityOfProductsInTheCart();
+		assertThat(productsInCart, is(0));
+	}
 }
