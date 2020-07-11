@@ -21,7 +21,7 @@ public class BaseTests {
 	
 	@BeforeEach
 	public void loadHomePage() {
-		driver.get("https://www.kabum.com.br/");
+		driver.get("https://www.terabyteshop.com.br/");
 		homePage = new HomePage(driver);
 	}
 	
