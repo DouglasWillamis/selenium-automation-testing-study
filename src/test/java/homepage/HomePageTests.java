@@ -36,7 +36,7 @@ public class HomePageTests extends BaseTests {
 	}
 
 	@Test
-	public void testLoginSuccessfully() throws InterruptedException {
+	public void testLoginSuccessfully() {
 		LoginPage loginPage = homePage.clickButtonSingIn();
 		loginPage.fillEmailField("douglaswillamis@mozej.com");
 		loginPage.fillPasswordField(">6gwvTq7y'C'8PJ(");
