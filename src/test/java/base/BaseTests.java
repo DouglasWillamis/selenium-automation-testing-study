@@ -18,13 +18,14 @@ public class BaseTests {
 		System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
 		driver = new ChromeDriver();
 	}
-	
+
 	@BeforeEach
 	public void loadHomePage() {
-		driver.get("https://www.terabyteshop.com.br/");
+		driver.manage().window().maximize();
+		driver.get("https://marcelodebittencourt.com/demoprestashop/");
 		homePage = new HomePage(driver);
 	}
-	
+
 	@AfterAll
 	public static void finish() {
 		driver.quit();
