@@ -36,11 +36,11 @@ public class HomePage {
 		return Integer.parseInt(quantityProductsInCart.replaceAll("\\D+",""));
 	}
 	
-	public String getNameProduct(int index) {
+	public String getProductName(int index) {
 		return driver.findElements(productsDescription).get(index).getText();
 	}
 	
-	public String getPriceProduct (int index) {
+	public String getProductPrice (int index) {
 		return driver.findElements(productsPrice).get(index).getText();
 	}
 	
