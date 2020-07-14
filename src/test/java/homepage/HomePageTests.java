@@ -9,11 +9,13 @@ import org.junit.jupiter.api.Test;
 
 import base.BaseTests;
 import pages.LoginPage;
+import pages.ModalProductPage;
 import pages.ProductPage;
 
 public class HomePageTests extends BaseTests {
 	private LoginPage loginPage;
 	private ProductPage productPage;
+	private ModalProductPage modalProductPage;
 	
 	@Test
 	public void testSumProducts() {
@@ -35,7 +37,6 @@ public class HomePageTests extends BaseTests {
 		productPage = homePage.ClickOnProduct(index);
 		String productNameInProductPage = productPage.getProductName();
 		String productPriceInProductPage = productPage.getProductPrice();
-
 		assertThat(productNameInHomePage.toUpperCase(), is(productNameInProductPage.toUpperCase()));
 		assertThat(productPriceInHomePage, is(productPriceInProductPage));
 	}
@@ -57,10 +58,23 @@ public class HomePageTests extends BaseTests {
 		}
 		testValidateProductDetail();
 		List<String> listOptions = productPage.getSelectedOptions();
-		productPage.selectProductSize(listOptions.get(1));
-		productPage.selectColorForProduct(1);
-		productPage.changeProductQuantity(3);
-		productPage.clickButtonAddToCart();
+		String productSize = productPage.selectProductSize(listOptions.get(1));
+		String productColor = productPage.selectColorForProduct(1);
+		String productName = productPage.getProductName();
+		String productPrice = productPage.getProductPrice();
+		Double productPriceNumber = Double.parseDouble(productPrice);
+		int productQuantity = 3;
+		Double subTotalPurchaseAmountCalcule = productPriceNumber * productQuantity;
+		productPage.changeProductQuantity(productQuantity);
+		modalProductPage = productPage.clickButtonAddToCart();
+		assertThat(modalProductPage.getMsgProductSuccessfullyAdded().endsWith("Product successfully added to your shopping cart"), is(true));
+		assertThat(modalProductPage.getProductName().toUpperCase(), is(productName.toUpperCase()));
+		assertThat(modalProductPage.getProductColor().toUpperCase(), is(productColor.toUpperCase()));
+		assertThat(modalProductPage.getProductSize().toUpperCase(), is(productSize.toUpperCase()));
+		assertThat(modalProductPage.getProductPrice(), is(productPrice));
+		assertThat(modalProductPage.getProductQuantity(), is(Integer.toString(productQuantity)));
+		Double subTotalPurchaseAmount = Double.parseDouble(modalProductPage.getSubTotalPurchaseAmount());
+		assertThat(subTotalPurchaseAmount, is(subTotalPurchaseAmountCalcule));
 	}
 
 

@@ -27,11 +27,11 @@ public class ProductPage {
 	}
 
 	public String getProductPrice() {
-		return driver.findElement(productPrice).getText();
+		return driver.findElement(productPrice).getText().replace("$", "");
 	}
 	
 	private Select findProductSize() {
-		return new Select(driver.findElement(productSize))	;
+		return new Select(driver.findElement(productSize));
 	}
 	
 	public List<String> getSelectedOptions() {
@@ -43,12 +43,14 @@ public class ProductPage {
 		return listSelectedOptions;
 	}
 	
-	public void selectProductSize(String option) {
+	public String selectProductSize(String option) {
 		findProductSize().selectByVisibleText(option);
+		return findProductSize().getFirstSelectedOption().getText();
 	}
 	
-	public void selectColorForProduct(int index) {
+	public String selectColorForProduct(int index) {
 		driver.findElements(productColors).get(index).click();
+		return driver.findElements(productColors).get(index).getAttribute("innerText");
 	}
 	
 	public void changeProductQuantity(int quantity) {
@@ -56,7 +58,8 @@ public class ProductPage {
 		driver.findElement(productQuantity).sendKeys(Integer.toString(quantity));
 	}
 	
-	public void clickButtonAddToCart() {
+	public ModalProductPage clickButtonAddToCart() {
 		driver.findElement(btnAddToCart).click();
+		return new ModalProductPage(driver);
 	}
 }

@@ -41,7 +41,7 @@ public class HomePage {
 	}
 	
 	public String getProductPrice (int index) {
-		return driver.findElements(productsPrice).get(index).getText();
+		return driver.findElements(productsPrice).get(index).getText().replace("$", "");
 	}
 	
 	public ProductPage ClickOnProduct(int index) {
