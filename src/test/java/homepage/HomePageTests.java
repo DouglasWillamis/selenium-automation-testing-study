@@ -58,8 +58,8 @@ public class HomePageTests extends BaseTests {
 		testValidateProductDetail();
 		List<String> listOptions = productPage.getSelectedOptions();
 		productPage.selectProductSize(listOptions.get(1));
-		productPage.selectBlackColorForProduct();
-		productPage.changeproductQuantity(3);
+		productPage.selectColorForProduct(1);
+		productPage.changeProductQuantity(3);
 		productPage.clickButtonAddToCart();
 	}
 

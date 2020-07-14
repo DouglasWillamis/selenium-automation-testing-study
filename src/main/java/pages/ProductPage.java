@@ -14,7 +14,7 @@ public class ProductPage {
 	private By productName = By.className("h1");
 	private By productPrice = By.cssSelector("div.current-price span:nth-child(1)");
 	private By productSize = By.id("group_1");
-	private By productColorBlack = By.cssSelector("ul#group_2 li:nth-child(2) input[name='group[2]']");
+	private By productColors = By.cssSelector("ul#group_2 li");
 	private By productQuantity = By.id("quantity_wanted");
 	private By btnAddToCart = By.className("add-to-cart");
 
@@ -47,11 +47,11 @@ public class ProductPage {
 		findProductSize().selectByVisibleText(option);
 	}
 	
-	public void selectBlackColorForProduct() {
-		driver.findElement(productColorBlack).click();
+	public void selectColorForProduct(int index) {
+		driver.findElements(productColors).get(index).click();
 	}
 	
-	public void changeproductQuantity(int quantity) {
+	public void changeProductQuantity(int quantity) {
 		driver.findElement(productQuantity).clear();
 		driver.findElement(productQuantity).sendKeys(Integer.toString(quantity));
 	}
