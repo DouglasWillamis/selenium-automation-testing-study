@@ -16,6 +16,7 @@ public class ModalProductPage {
 	private By productPrice = By.cssSelector("p.product-price");
 	private By listReportedVaues = By.cssSelector("div.divide-right div.col-md-6:nth-child(2) span strong");
 	private By subTotalPurchaseAmount = By.cssSelector("div.cart-content p:nth-child(2) span.value");
+	private By btnProceedToCheckout = By.cssSelector("div.cart-content-btn a.btn-primary");
 	
 	public ModalProductPage(WebDriver driver) {
 		this.driver = driver;
@@ -52,5 +53,10 @@ public class ModalProductPage {
 
 	public String getSubTotalPurchaseAmount () {
 		return driver.findElement(subTotalPurchaseAmount).getText().replace("$", "");
+	}
+	
+	public CartPage clickBtnProceedToCheckout() {
+		driver.findElement(btnProceedToCheckout).click();
+		return new CartPage(driver);
 	}
 }

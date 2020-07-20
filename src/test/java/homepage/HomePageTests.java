@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import base.BaseTests;
+import pages.CartPage;
 import pages.LoginPage;
 import pages.ModalProductPage;
 import pages.ProductPage;
@@ -77,5 +78,9 @@ public class HomePageTests extends BaseTests {
 		assertThat(subTotalPurchaseAmount, is(subTotalPurchaseAmountCalcule));
 	}
 
-
+	@Test
+	public void goToCart() {
+		addProductToCart();
+		CartPage cartPage = modalProductPage.clickBtnProceedToCheckout();
+	}
 }
