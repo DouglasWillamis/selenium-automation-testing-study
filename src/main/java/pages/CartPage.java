@@ -21,4 +21,54 @@ public class CartPage {
 	public CartPage (WebDriver driver) {
 		this.driver = driver;
 	}
+
+	public String getProductName() {
+		return driver.findElement(productName).getText();
+	}
+
+	public String getProductSize() {
+		return driver.findElement(productSize).getText();
+	}
+
+	public String getProductPrice() {
+		return driver.findElement(productPrice).getText().replace("$", "");
+	}
+
+	public String getProductColor() {
+		return driver.findElement(productColor).getText();
+	}
+
+	public int getProductQuantity() {
+		return Integer.parseInt(driver.findElement(productQuantity).getAttribute("value"));
+	}
+
+	public String getProductSubtotalValue() {
+		return driver.findElement(productSubtotalValue).getText().replace("$", "");
+	}
+
+	public String getSubtotalNumberOfItems() {
+		return driver.findElement(subtotalNumberOfItems).getText();
+	}
+
+	public String getCartSubtotalValue() {
+		return driver.findElement(cartSubtotalValue).getText().replace("$", "");
+	}
+
+	public String getShippingValue() {
+		return driver.findElement(shippingValue).getText().replace("$", "");
+	}
+
+	public String getCartTotalValueWithoutTax() {
+		return driver.findElement(cartTotalValueWithoutTax).getText().replace("$", "");
+	}
+
+	public String getCartTotalValueWithTax() {
+		return driver.findElement(cartTotalValueWithTax).getText().replace("$", "");
+	}
+
+	public String getCartTaxvalue() {
+		return driver.findElement(cartTaxvalue).getText().replace("$", "");
+	}
+	
+	
 }
