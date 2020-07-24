@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import util.StringUtil;
+
 public class ProductPage {
 
 	private WebDriver driver;
@@ -26,8 +28,8 @@ public class ProductPage {
 		return driver.findElement(productName).getText();
 	}
 
-	public String getProductPrice() {
-		return driver.findElement(productPrice).getText().replace("$", "");
+	public Double getProductPrice() {
+		return StringUtil.stringForDoubleWithoutMoneySign(driver.findElement(productPrice).getText());
 	}
 	
 	private Select findProductSize() {

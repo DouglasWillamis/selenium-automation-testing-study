@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
+import util.StringUtil;
+
 public class ModalProductPage {
 	
 	private WebDriver driver;
@@ -35,8 +37,8 @@ public class ModalProductPage {
 		return driver.findElement(productName).getText();
 	}
 	
-	public String getProductPrice () {
-		return driver.findElement(productPrice).getText().replace("$", "");
+	public Double getProductPrice () {
+		return StringUtil.stringForDoubleWithoutMoneySign(driver.findElement(productPrice).getText());
 	}
 	
 	public String getProductSize() {
@@ -51,8 +53,8 @@ public class ModalProductPage {
 		return driver.findElements(listReportedVaues).get(2).getText();
 	}
 
-	public String getSubTotalPurchaseAmount () {
-		return driver.findElement(subTotalPurchaseAmount).getText().replace("$", "");
+	public Double getSubTotalPurchaseAmount () {
+		return StringUtil.stringForDoubleWithoutMoneySign(driver.findElement(subTotalPurchaseAmount).getText());
 	}
 	
 	public CartPage clickBtnProceedToCheckout() {

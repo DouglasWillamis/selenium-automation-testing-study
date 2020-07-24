@@ -3,6 +3,8 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import util.StringUtil;
+
 public class CartPage {
 	private WebDriver driver;
 	private By productName = By.cssSelector("div.product-line-info a.label");
@@ -30,8 +32,8 @@ public class CartPage {
 		return driver.findElement(productSize).getText();
 	}
 
-	public String getProductPrice() {
-		return driver.findElement(productPrice).getText().replace("$", "");
+	public Double getProductPrice() {
+		return StringUtil.stringForDoubleWithoutMoneySign(driver.findElement(productPrice).getText());
 	}
 
 	public String getProductColor() {
@@ -42,33 +44,34 @@ public class CartPage {
 		return Integer.parseInt(driver.findElement(productQuantity).getAttribute("value"));
 	}
 
-	public String getProductSubtotalValue() {
-		return driver.findElement(productSubtotalValue).getText().replace("$", "");
+	public Double getProductSubtotalValue() {
+		return StringUtil.stringForDoubleWithoutMoneySign(driver.findElement(productSubtotalValue).getText());
 	}
 
 	public String getSubtotalNumberOfItems() {
 		return driver.findElement(subtotalNumberOfItems).getText();
 	}
 
-	public String getCartSubtotalValue() {
-		return driver.findElement(cartSubtotalValue).getText().replace("$", "");
+	public Double getCartSubtotalValue() {
+		return StringUtil.stringForDoubleWithoutMoneySign(driver.findElement(cartSubtotalValue).getText());
 	}
 
-	public String getShippingValue() {
-		return driver.findElement(shippingValue).getText().replace("$", "");
+	public Double getShippingValue() {
+		return StringUtil.stringForDoubleWithoutMoneySign(driver.findElement(shippingValue).getText());
 	}
 
-	public String getCartTotalValueWithoutTax() {
-		return driver.findElement(cartTotalValueWithoutTax).getText().replace("$", "");
+	public Double getCartTotalValueWithoutTax() {
+		return StringUtil.stringForDoubleWithoutMoneySign(driver.findElement(cartTotalValueWithoutTax).getText());
 	}
 
-	public String getCartTotalValueWithTax() {
-		return driver.findElement(cartTotalValueWithTax).getText().replace("$", "");
+	public Double getCartTotalValueWithTax() {
+		return StringUtil.stringForDoubleWithoutMoneySign(driver.findElement(cartTotalValueWithTax).getText());
 	}
 
-	public String getCartTaxvalue() {
-		return driver.findElement(cartTaxvalue).getText().replace("$", "");
+	public Double getCartTaxvalue() {
+		return StringUtil.stringForDoubleWithoutMoneySign(driver.findElement(cartTaxvalue).getText());
 	}
+	
 	
 	
 }

@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import util.StringUtil;
+
 public class HomePage {
 
 	private WebDriver driver;
@@ -40,8 +42,8 @@ public class HomePage {
 		return driver.findElements(productsDescription).get(index).getText();
 	}
 	
-	public String getProductPrice (int index) {
-		return driver.findElements(productsPrice).get(index).getText().replace("$", "");
+	public Double getProductPrice (int index) {
+		return StringUtil.stringForDoubleWithoutMoneySign(driver.findElements(productsPrice).get(index).getText());
 	}
 	
 	public ProductPage ClickOnProduct(int index) {

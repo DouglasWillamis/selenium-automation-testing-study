@@ -34,10 +34,10 @@ public class HomePageTests extends BaseTests {
 	public void testValidateProductDetail() {
 		int index = 0;
 		String productNameInHomePage = homePage.getProductName(index);
-		String productPriceInHomePage = homePage.getProductPrice(index);
+		Double productPriceInHomePage = homePage.getProductPrice(index);
 		productPage = homePage.ClickOnProduct(index);
 		String productNameInProductPage = productPage.getProductName();
-		String productPriceInProductPage = productPage.getProductPrice();
+		Double productPriceInProductPage = productPage.getProductPrice();
 		assertThat(productNameInHomePage.toUpperCase(), is(productNameInProductPage.toUpperCase()));
 		assertThat(productPriceInHomePage, is(productPriceInProductPage));
 	}
@@ -62,10 +62,9 @@ public class HomePageTests extends BaseTests {
 		String productSize = productPage.selectProductSize(listOptions.get(1));
 		String productColor = productPage.selectColorForProduct(1);
 		String productName = productPage.getProductName();
-		String productPrice = productPage.getProductPrice();
-		Double productPriceNumber = Double.parseDouble(productPrice);
+		Double productPrice = productPage.getProductPrice();
 		int productQuantity = 3;
-		Double subTotalPurchaseAmountCalcule = productPriceNumber * productQuantity;
+		Double subTotalPurchaseAmountCalcule = productPrice * productQuantity;
 		productPage.changeProductQuantity(productQuantity);
 		modalProductPage = productPage.clickButtonAddToCart();
 		assertThat(modalProductPage.getMsgProductSuccessfullyAdded().endsWith("Product successfully added to your shopping cart"), is(true));
@@ -74,13 +73,24 @@ public class HomePageTests extends BaseTests {
 		assertThat(modalProductPage.getProductSize().toUpperCase(), is(productSize.toUpperCase()));
 		assertThat(modalProductPage.getProductPrice(), is(productPrice));
 		assertThat(modalProductPage.getProductQuantity(), is(Integer.toString(productQuantity)));
-		Double subTotalPurchaseAmount = Double.parseDouble(modalProductPage.getSubTotalPurchaseAmount());
-		assertThat(subTotalPurchaseAmount, is(subTotalPurchaseAmountCalcule));
+		assertThat(modalProductPage.getSubTotalPurchaseAmount(), is(subTotalPurchaseAmountCalcule));
 	}
 
 	@Test
 	public void goToCart() {
 		addProductToCart();
 		CartPage cartPage = modalProductPage.clickBtnProceedToCheckout();
+		System.out.println(cartPage.getCartSubtotalValue());
+		System.out.println(cartPage.getCartTaxvalue());
+		System.out.println(cartPage.getCartTotalValueWithoutTax());
+		System.out.println(cartPage.getCartTotalValueWithTax());
+		System.out.println(cartPage.getProductColor());
+		System.out.println(cartPage.getProductPrice());
+		System.out.println(cartPage.getProductName());
+		System.out.println(cartPage.getProductQuantity());
+		System.out.println(cartPage.getProductSize());
+		System.out.println(cartPage.getProductSubtotalValue());
+		System.out.println(cartPage.getShippingValue());
+		System.out.println(cartPage.getSubtotalNumberOfItems());
 	}
 }
